@@ -22,7 +22,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
         // verifica a rota
         var servletPath = request.getServletPath();
 
-        if (servletPath.equals("/tasks/")) {
+        if (servletPath.startsWith("/tasks/")) {
             var authorization = request.getHeader("Authorization");
             var encodedPasswd = authorization.substring("Basic".length()).trim();
             byte[] decodedPasswd = Base64.getDecoder().decode(encodedPasswd);
