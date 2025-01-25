@@ -41,6 +41,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
                 var verifiedPassword = Objects.equals(password, user.getPassword());
 
                 if (verifiedPassword) {
+                    request.setAttribute("idUser", user.getId());
                     filterChain.doFilter(request, response);
                 } else {
                     response.sendError(401);
